@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>La torre de los comics</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Anton|Yanone+Kaffeesatz"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/plantilla.css">
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="img/logo1.ico" />
+<script type="text/javascript" src="script/index.js"></script>
+<script type="text/javascript" src="/script/s.js"></script>
+</head>
+<body>
+	<div class="container-portada" id="port">
+		<div class="capa-gradient"></div>
+		<div class="container-details">
+			<div class="details">
+				<h1>La torre de los comics</h1>
+				<p>Tienda especializada en la venta de comics, articulos de
+					colección y afines</p>
+				<button id="enter">Ingresar</button>
+			</div>
+			<img src="img/logo.png">
+		</div>
+	</div>
+	<div id="inicio">
+		<script>
+			$(document).ready(function() {
+				$.get("/index", function(data) {
+					$("#inicio").html(data);
+				});
+			});
+		</script>
+	</div>
+</body>
+</html>
