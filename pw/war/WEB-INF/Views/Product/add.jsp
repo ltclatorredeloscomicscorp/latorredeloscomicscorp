@@ -5,9 +5,9 @@
 <%@ page import="models.User"%>
 <%@ page import="models.User"%>
 <%
-///	User log = (User)request.getAttribute("log"); 
-//	Boolean islog = (Boolean)request.getAttribute("isLogged");
-//	boolean isLogged = islog.booleanValue();
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,11 +43,11 @@
 			La torre de los comics
 			<div id="info_page">
 				<%
-			//		if(log.isAdministrador()){
+					if (log.isAdministrador()) {
 				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
 				<%
-				//	}
+					}
 				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
@@ -61,18 +61,18 @@
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
 				<%
-					// if (isLogged){
+					if (isLogged) {
 				%>
 				<a class="men" href="/users/logout">Cerrar Sesion</a>
 				<%
-				//	} else{
+					} else {
 				%>
 				<a href="/users/register" class="men">Registrar</a><a class="men"
 					href="/users/login">Iniciar Sesion</a class="men">
 				<%
-				//	}
-				%><label class="men" id="opencar">Carro</label><label
-					class="men" id="menu">Menú</label>
+					}
+				%><label class="men" id="opencar">Carro</label><label class="men"
+					id="menu">Menú</label>
 			</div>
 		</div>
 		</header>
@@ -98,17 +98,18 @@
 		</div>
 		<div id="contenido" style="background: white;">
 			<form id="formulario" action="/products/add" method="post">
-				<br> <label>Nombre del producto :</label><br>
-				<input type="text"name="name" required> <br /> 
-				<label>Precio del producto :</label><br> 
-				S/<input type="number" name="amount" step="0.01" title="ingreso del Precio" required>S/ <br /> <label>Author o editorial :</label> <br /><input type="text" name="author" required><br />
-				<label>Descripcion del producto :</label><br>
+				<br> <label>Nombre del producto :</label><br> <input
+					type="text" name="name" required> <br /> <label>Precio
+					del producto :</label><br> S/<input type="number" name="amount"
+					step="0.01" title="ingreso del Precio" required>S/ <br />
+				<label>Author o editorial :</label> <br /> <input type="text"
+					name="author" required><br /> <label>Descripcion
+					del producto :</label><br>
 				<textarea name="description" required
 					placeholder="ingrese descripcion"></textarea>
 				<br /> <label>Ingrese fecha inicio de venta: </label><br> <input
-					type="date" name="dateOfSale" required> <br /> Imagen<br> <input
-					type="text" name="file" required />
-				<input type="submit">
+					type="date" name="dateOfSale" required> <br /> Imagen<br>
+				<input type="text" name="file" required /> <input type="submit">
 			</form>
 		</div>
 	</div>

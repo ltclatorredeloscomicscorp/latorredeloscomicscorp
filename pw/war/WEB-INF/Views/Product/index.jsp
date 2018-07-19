@@ -14,9 +14,9 @@
 %>
 <%
 	List<Role> roles = (List<Role>) request.getAttribute("roles");
-//	User log = (User) request.getAttribute("log");
-//	Boolean islog = (Boolean) request.getAttribute("isLogged");
-//	boolean isLogged = islog.booleanValue();
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,6 +45,7 @@
 				<li><a href="/products">comprar</a></li>
 				<li><a href="/us">nosotros</a></li>
 				<li><a href="/contact">contactanos</a></li>
+				<li><a href="/messages">mensajes</a></li>
 			</ul>
 		</div>
 		<header>
@@ -52,11 +53,11 @@
 			La torre de los comics
 			<div id="info_page">
 				<%
-				//	if (log.isAdministrador()) {
+					if (log.isAdministrador()) {
 				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
 				<%
-				//	}
+					}
 				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
@@ -70,16 +71,16 @@
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
 				<%
-			//		if (isLogged) {
+					if (isLogged) {
 				%>
 				<a class="men" href="/users/logout">Cerrar Sesion</a>
 				<%
-			//		} else {
+					} else {
 				%>
 				<a href="/users/register" class="men">Registrar</a><a class="men"
 					href="/users/login">Iniciar Sesion</a class="men">
 				<%
-				//	}
+					}
 				%><label class="men" id="opencar">Carro</label><label class="men"
 					id="menu">Menú</label>
 			</div>
@@ -95,7 +96,7 @@
 			<div id="conversacion"></div>
 			<form id="mes">
 				<textarea id="message" placeholder="Ingrese mensaje"></textarea>
-				<input type="image" src="../img/send.png" id="send">
+				<input type="button" value="Send" id="send">
 			</form>
 		</div>
 		<div id="car">
@@ -109,28 +110,35 @@
 				if (products.size() > 0) {
 			%>
 			<%
-					for (int i = 0; i < products.size(); i++) {
-				%>
+				for (int i = 0; i < products.size(); i++) {
+			%>
 			<%
-					Product o = (Product) products.get(i);
-				%>
+				Product o = (Product) products.get(i);
+			%>
 			<div class="product">
-				<img src="<%=o.getImage() %>">
+				<img src="<%=o.getImage()%>">
 				<p class="title">
-					<b><%=o.getName() %></b>
+					<b><%=o.getName()%></b>
 				</p>
-				<p class="price"><%=o.getAmount() %></p>
-				<%//if(log.isAdministrador()){ %>
+				<p class="price"><%=o.getAmount()%></p>
+				<%
+					if (log.isAdministrador()) {
+				%>
 				<a href="/products/edit?id=<%=o.getId()%>"><button>Editar</button></a>
 				<a href="/products/remove?id=<%=o.getId()%>"><button>Eliminar</button></a>
-				<%//} else {%>
-				<button class="buttoncar"  id="<%=o.getId() %>">AÑADIR AL CARRO</button>
-				<%} %>
+				<%
+					} else {
+				%>
+				<button class="buttoncar" id="<%=o.getId()%>">AÑADIR AL
+					CARRO</button>
+				<%
+					}
+				%>
 			</div>
 
 			<%
-				//	}
-				%>
+				}
+			%>
 			<%
 				} else {
 			%>
@@ -140,5 +148,4 @@
 			%>
 		</div>
 	</div>
-
 </html>

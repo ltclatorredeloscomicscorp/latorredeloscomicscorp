@@ -32,11 +32,11 @@ import models.Resource;
 import models.Access;
 public class AddController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 		RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Access/add.jsp");
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		String query = "SELECT FROM "+ Role.class.getName();
@@ -47,7 +47,7 @@ public class AddController extends HttpServlet {
 		req.setAttribute("roles", roles);
 		req.setAttribute("rsr", resource);
 		rd.forward(req, resp);
-		//}
+		}
 
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
@@ -59,11 +59,12 @@ public class AddController extends HttpServlet {
 			pm.makePersistent(access);
 		}
 		
+		response.sendRedirect("/access");
 
 		// parte extra
 
 		//obtienes los usuarios con el rol que se agregó
-		String query2 = "select from " + User.class.getName() + " where idRol == "+request.getParameter("rol");
+		/*String query2 = "select from " + User.class.getName() + " where idRol == "+request.getParameter("rol");
 		List<User> users = (List<User>)pm.newQuery(query2).execute();
 		Resource rsr = pm.getObjectById(Resource.class, Long.parseLong(request.getParameter("url")));
 		//pasas los correos de esos usuarios a un arreglo de solo emails
@@ -79,7 +80,7 @@ public class AddController extends HttpServlet {
 		RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/correoP");
 
 		pm.close();
-		rd.forward(request, response);
+		rd.forward(request, response);*/
 		 
 
 

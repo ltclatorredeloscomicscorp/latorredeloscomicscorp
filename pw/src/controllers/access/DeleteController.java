@@ -10,12 +10,12 @@ import models.Access;
 import models.User;
 public class DeleteController extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	/*	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			req.setAttribute("url", req.getRequestURI());
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			Access access = pm.getObjectById(Access.class, new Long(req.getParameter("id")).longValue());
 			if (access!=null){
@@ -23,6 +23,6 @@ public class DeleteController extends HttpServlet {
 			}
 			pm.close();
 			resp.sendRedirect("/access");
-		//}
+		}
 	}
 }

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <%@page import="models.Access"%>
 <%@page import="java.util.Date"%>
-	<%@ page import="models.User" %>
-<%//User log = (User)request.getAttribute("log"); 
-//Boolean islog = (Boolean)request.getAttribute("isLogged");
-//boolean isLogged = islog.booleanValue();%>
+<%@ page import="models.User"%>
+<%
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
+%>
 <%
 	Access access = (Access) request.getAttribute("access");
 %>
@@ -41,9 +43,13 @@
 		<div id="name">
 			La torre de los comics
 			<div id="info_page">
-				<%//if(log.isAdministrador()){ %>
+				<%
+					if (log.isAdministrador()) {
+				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
-				<%//} %>
+				<%
+					}
+				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
 					title="Tutoriales de uso"><img src="../img/youtube.png"></a>
@@ -55,11 +61,19 @@
 		<div id="secondname">
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
-				<% //if (isLogged){%>
-			<a class="men" href="/users/logout">Cerrar Sesion</a>
-			<%//} else{%> 
-				<a href="/users/register" class="men">Registrar</a><a class="men" href="/users/login">Iniciar Sesion</a class="men"><%//} %><label
-					class="men" id="opencar">Carro</label><label class="men" id="menu">Menú</label>
+				<%
+					if (isLogged) {
+				%>
+				<a class="men" href="/users/logout">Cerrar Sesion</a>
+				<%
+					} else {
+				%>
+				<a href="/users/register" class="men">Registrar</a><a class="men"
+					href="/users/login">Iniciar Sesion</a class="men">
+				<%
+					}
+				%><label class="men" id="opencar">Carro</label><label class="men"
+					id="menu">Menú</label>
 			</div>
 		</div>
 		</header>

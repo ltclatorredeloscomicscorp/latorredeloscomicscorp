@@ -3,10 +3,12 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="models.Role"%>
-	<%@ page import="models.User" %>
-<%User log = (User)request.getAttribute("log"); 
-Boolean islog = (Boolean)request.getAttribute("isLogged");
-boolean isLogged = islog.booleanValue();%>
+<%@ page import="models.User"%>
+<%
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
+%>
 <%
 	Date date = (Date) request.getAttribute("date");
 %>
@@ -46,9 +48,13 @@ boolean isLogged = islog.booleanValue();%>
 		<div id="name">
 			La torre de los comics
 			<div id="info_page">
-				<%if(log.isAdministrador()){ %>
+				<%
+					if (log.isAdministrador()) {
+				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
-				<%} %>
+				<%
+					}
+				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
 					title="Tutoriales de uso"><img src="../img/youtube.png"></a>
@@ -60,11 +66,19 @@ boolean isLogged = islog.booleanValue();%>
 		<div id="secondname">
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
-				<% if (isLogged){%>
-			<a class="men" href="/users/logout">Cerrar Sesion</a>
-			<%} else{%> 
-				<a href="/users/register" class="men">Registrar</a><a class="men" href="/users/login">Iniciar Sesion</a class="men"><%} %><label
-					class="men" id="opencar">Carro</label><label class="men" id="menu">Menú</label>
+				<%
+					if (isLogged) {
+				%>
+				<a class="men" href="/users/logout">Cerrar Sesion</a>
+				<%
+					} else {
+				%>
+				<a href="/users/register" class="men">Registrar</a><a class="men"
+					href="/users/login">Iniciar Sesion</a class="men">
+				<%
+					}
+				%><label class="men" id="opencar">Carro</label><label class="men"
+					id="menu">Menú</label>
 			</div>
 		</div>
 		</header>
@@ -89,35 +103,36 @@ boolean isLogged = islog.booleanValue();%>
 			<button>Hacer Pedido ($00.00)</button>
 		</div>
 		<div id="contenido" style="background: white;">
-		<form action="/users/register" method="post">
-			<h1>Registrar Usuario</h1>
-			<input type="text" name="name" placeholder="Ingrese su nombre"
-				required> <br> <br> <br> <input type="text"
-				name="apellido" placeholder="Ingrese su apellido" required>
-			<br> <br> <br> <input type="hidden" name="email"
-				placeholder="Ingrese su correo electronico" required
-				value="<%=request.getParameter("email")%>"> <label>Ingrese
-				su fecha de Nacimiento</label><br>
-			<%
-				date = new Date(date.getTime() - 86400000);
-				String res = "" + (1900 + date.getYear()) + "-";
-				if (date.getMonth() < 10)
-					res = res + "0";
-				res = res + (date.getMonth() + 1) + "-";
-				if (date.getDate() < 10)
-					res = res + "0";
-				res = res + date.getDate();
-			%>
-			<br> <input type="date" name="date" min="1000-01-01"
-				max="<%=res%>" placeholder="Ingrese su fecha de Nacimiento" required>
-			<br> <br> <br> <input type="radio" name="gender"
-				id="hombre" value="true" checked> <label for="hombre">Masculino</label>
-			<input type="radio" name="gender" id="mujer" value="false"> <label
-				for="mujer">Femenino</label><br><br>
-			<input name ="role" type="hidden" value="<%=roles.getId() %>">
-			<br> <input type="submit" value="Registrar">
-		</form>
-	</div>
+			<form action="/users/register" method="post">
+				<h1>Registrar Usuario</h1>
+				<input type="text" name="name" placeholder="Ingrese su nombre"
+					required> <br> <br> <br> <input type="text"
+					name="apellido" placeholder="Ingrese su apellido" required>
+				<br> <br> <br> <input type="hidden" name="email"
+					placeholder="Ingrese su correo electronico" required
+					value="<%=request.getParameter("email")%>"> <label>Ingrese
+					su fecha de Nacimiento</label><br>
+				<%
+					date = new Date(date.getTime() - 86400000);
+					String res = "" + (1900 + date.getYear()) + "-";
+					if (date.getMonth() < 10)
+						res = res + "0";
+					res = res + (date.getMonth() + 1) + "-";
+					if (date.getDate() < 10)
+						res = res + "0";
+					res = res + date.getDate();
+				%>
+				<br> <input type="date" name="date" min="1000-01-01"
+					max="<%=res%>" placeholder="Ingrese su fecha de Nacimiento"
+					required> <br> <br> <br> <input type="radio"
+					name="gender" id="hombre" value="true" checked> <label
+					for="hombre">Masculino</label> <input type="radio" name="gender"
+					id="mujer" value="false"> <label for="mujer">Femenino</label><br>
+				<br> <input name="role" type="hidden"
+					value="<%=roles.getId()%>"> <br> <input type="submit"
+					value="Registrar">
+			</form>
+		</div>
 	</div>
 </body>
 </html>

@@ -48,6 +48,6 @@ public class CorreoP extends HttpServlet{
 					resp.getOutputStream().println(e.getMessage()+" ");
 				}
 		}
-		//resp.sendRedirect("/access");
+		resp.sendRedirect("/access");
 	}
 }

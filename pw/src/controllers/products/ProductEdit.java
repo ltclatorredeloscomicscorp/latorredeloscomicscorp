@@ -18,11 +18,11 @@ import controllers.users.LogController;
 @SuppressWarnings("serial")
 public class ProductEdit extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-	/*	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			Key k =	KeyFactory.createKey(Product.class.getSimpleName(), new
 					Long(req.getParameter("id")).longValue());
@@ -30,7 +30,7 @@ public class ProductEdit extends HttpServlet {
 			req.setAttribute("product", p);
 			RequestDispatcher dispatcher =getServletContext().getRequestDispatcher("/WEB-INF/Views/Product/edit.jsp");
 			dispatcher.forward(req, resp);	
-		//}
+		}
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();

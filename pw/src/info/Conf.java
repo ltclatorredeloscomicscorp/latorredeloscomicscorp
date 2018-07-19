@@ -13,13 +13,13 @@ import models.User;
 
 public class Conf extends HttpServlet  {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		/*if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/info/conf.jsp");
 			rd.forward(req, resp);
 		}
-	//}
+	}
 }

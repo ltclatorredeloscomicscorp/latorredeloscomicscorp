@@ -13,13 +13,13 @@ import models.User;
 
 public class Index extends HttpServlet  {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-	/*	if (AccessController.isPermitedIndex(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermitedIndex(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/info/index.jsp");
 			rd.forward(req, resp);
 		}
-//	}
+	}
 }

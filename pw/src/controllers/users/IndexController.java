@@ -12,10 +12,10 @@ import models.User;
 
 public class IndexController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*if (AccessController.isPermitedIndex(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermitedIndex(req.getServletPath(), req, resp, this)){
 			req.setAttribute("log", LogController.getUser());
 			boolean isLogged = LogController.isLogged();
-			req.setAttribute("isLogged", isLogged);*/
+			req.setAttribute("isLogged", isLogged);
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			String query = "SELECT FROM "+ User.class.getName();
 			List<User> users = (List<User>)pm.newQuery(query).execute();
@@ -23,6 +23,6 @@ public class IndexController extends HttpServlet {
 			req.setAttribute("users", users);
 			RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Users/index.jsp");
 			rd.forward(req, resp);
-		///}
+		}
 	}
 }

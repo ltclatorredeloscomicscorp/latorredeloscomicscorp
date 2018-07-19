@@ -13,14 +13,14 @@ import models.Access;
 import java.util.*;
 public class DeleteController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	//	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			Role rol = pm.getObjectById(Role.class, Long.parseLong(req.getParameter("id")));
-		//	if ((!rol.getName().equalsIgnoreCase("Invitado"))&&!(rol.getName().equalsIgnoreCase("Administrador"))){
-		//		boolean isLogged = LogController.isLogged();
-		//		req.setAttribute("isLogged", isLogged);
-		//		User log = LogController.getUser();
-		//		req.setAttribute("log", log);
+			if ((!rol.getName().equalsIgnoreCase("Invitado"))&&!(rol.getName().equalsIgnoreCase("Administrador"))){
+				boolean isLogged = LogController.isLogged();
+				req.setAttribute("isLogged", isLogged);
+				User log = LogController.getUser();
+				req.setAttribute("log", log);
 				Role role = pm.getObjectById(Role.class, new Long(req.getParameter("id")).longValue());
 				String query = "SELECT FROM "+ Role.class.getName();
 				List<Role> roles = (List<Role>)pm.newQuery(query).execute();
@@ -29,7 +29,7 @@ public class DeleteController extends HttpServlet {
 				pm.close();
 				RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Roles/delete.jsp");
 				rd.forward(req, resp);
-		/*	} else {
+			} else {
 				req.setAttribute("respuesta", "Los roles Administrador e Invitado no pueden ser eliminados");
 				boolean isLogged = LogController.isLogged();
 				req.setAttribute("isLogged", isLogged);
@@ -38,8 +38,8 @@ public class DeleteController extends HttpServlet {
 				req.setAttribute("log", log);
 				RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Users/loginMistake.jsp");
 				rd.forward(req, resp);
-			}*/
-		//}
+			}
+		}
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();

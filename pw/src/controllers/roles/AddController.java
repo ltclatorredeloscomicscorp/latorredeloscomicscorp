@@ -15,14 +15,14 @@ import models.User;
 
 public class AddController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Roles/add.jsp");
 			rd.forward(req, resp);
-		//}
+		}
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		PersistenceManager pm = PMF.get().getPersistenceManager();

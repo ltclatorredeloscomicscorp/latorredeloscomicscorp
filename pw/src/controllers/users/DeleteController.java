@@ -13,18 +13,18 @@ import controllers.PMF;
 import models.User;
 public class DeleteController extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			User log = LogController.getUser();
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			User user = pm.getObjectById(User.class, new Long(req.getParameter("id")).longValue());
-		//	pm.close();
-		//if (user!=null){
+			pm.close();
+		if (user!=null){
 				if (user.getCorreo().equalsIgnoreCase("in@vita.do")){
 					req.setAttribute("respuesta", "Se produjo un error durante la eliminacion debido a que no se puede eliminar a un usuario con el rol Invitado");
-				//	req.setAttribute("log", log);
-				//	boolean isLogged = LogController.isLogged();
-				//	req.setAttribute("isLogged", isLogged);
-				//	req.setAttribute("url", req.getRequestURI());
+					req.setAttribute("log", log);
+					boolean isLogged = LogController.isLogged();
+					req.setAttribute("isLogged", isLogged);
+					req.setAttribute("url", req.getRequestURI());
 					pm.close();
 					RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Users/loginMistake.jsp");
 					rd.forward(req, resp);
@@ -32,9 +32,9 @@ public class DeleteController extends HttpServlet {
 					boolean isSame = log.getId().equals(user.getId());
 					if (isSame && user.getRol().equalsIgnoreCase("Administrador")){
 						req.setAttribute("respuesta", "Se produjo un error durante la eliminacion debido a que un usuario con el rol administrador no puede eliminarse asi mismo");
-					//	req.setAttribute("log", log);
-						//boolean isLogged = LogController.isLogged();
-						//req.setAttribute("isLogged", isLogged);
+						req.setAttribute("log", log);
+						boolean isLogged = LogController.isLogged();
+						req.setAttribute("isLogged", isLogged);
 						req.setAttribute("url", req.getRequestURI());
 						pm.close();
 						RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Users/loginMistake.jsp");
@@ -50,7 +50,7 @@ public class DeleteController extends HttpServlet {
 						resp.sendRedirect(directory);
 					}
 				}
-				/*if (!(log.getId().equals(user.getId()) && log.getRol().equalsIgnoreCase("Administrador"))|| !user.getRol().equalsIgnoreCase("Invitado")){
+				if (!(log.getId().equals(user.getId()) && log.getRol().equalsIgnoreCase("Administrador"))|| !user.getRol().equalsIgnoreCase("Invitado")){
 					boolean same = log.getId().equals(user.getId());
 					pm.deletePersistent(user);
 					if (same){
@@ -67,10 +67,10 @@ public class DeleteController extends HttpServlet {
 					req.setAttribute("url", req.getRequestURI());
 					RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Users/loginMistake.jsp");
 					rd.forward(req, resp);
-				}*/
-			/*} else {
+				}
+			} else {
 				resp.sendRedirect("/users");
-			}*/
-		//}
+			}
+		}
 	}
 }

@@ -17,9 +17,9 @@
 %>
 <%@ page import="models.User"%>
 <%
-//	User log = (User) request.getAttribute("log");
-//	Boolean islog = (Boolean) request.getAttribute("isLogged");
-//	boolean isLogged = islog.booleanValue();
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,11 +55,11 @@
 			La torre de los comics
 			<div id="info_page">
 				<%
-				//	if (log.isAdministrador()) {
+					if (log.isAdministrador()) {
 				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
 				<%
-				//	}
+					}
 				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
@@ -73,16 +73,16 @@
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
 				<%
-				//	if (isLogged) {
+					if (isLogged) {
 				%>
 				<a class="men" href="/users/logout">Cerrar Sesion</a>
 				<%
-				//	} else {
+					} else {
 				%>
 				<a href="/users/register" class="men">Registrar</a><a class="men"
 					href="/users/login">Iniciar Sesion</a class="men">
 				<%
-				//	}
+					}
 				%><label class="men" id="opencar">Carro</label><label class="men"
 					id="menu">Menú</label>
 			</div>
@@ -110,21 +110,21 @@
 		</div>
 		<div id="contenido" style="background: white;">
 			<form id="formulario" action="/products/edit" method="post">
-				<label>ID de producto :</label><br> <input type="number" name="id"
-					value="<%=p.getId()%>" readonly><br> <label>Nombre
-					del producto :</label> <br><input type="text" name="name" required
-					value="<%=p.getName()%>"> <br />
-				<label>Precio del producto :</label> <br><input type="number"
-					step="0.01" name="amount" required value="<%=p.getAmount()%>">S/<br />
-				<label>Author o editorial :</label><br> <input type="text" name="author"
-					required value="<%=p.getAuthor()%>"><br /> <label>Descripcion
+				<label>ID de producto :</label><br> <input type="number"
+					name="id" value="<%=p.getId()%>" readonly><br> <label>Nombre
+					del producto :</label> <br> <input type="text" name="name" required
+					value="<%=p.getName()%>"> <br /> <label>Precio del
+					producto :</label> <br> <input type="number" step="0.01" name="amount"
+					required value="<%=p.getAmount()%>">S/<br /> <label>Author
+					o editorial :</label><br> <input type="text" name="author" required
+					value="<%=p.getAuthor()%>"><br /> <label>Descripcion
 					del producto :</label><br>
 				<textarea name="description" required><%=p.getDescription()%></textarea>
-				<br /> <label> fecha inicio de venta: </label> <br><input type="date"
-					name="dateOfSale" required value="<%=p.getDateOfSale()%>"><br>Imagen
-					<input
-					type="text" name="file" required value="<%=p.getImage()%>" />
-				<input type="submit">
+				<br /> <label> fecha inicio de venta: </label> <br> <input
+					type="date" name="dateOfSale" required
+					value="<%=p.getDateOfSale()%>"><br>Imagen <input
+					type="text" name="file" required value="<%=p.getImage()%>" /> <input
+					type="submit">
 			</form>
 		</div>
 	</div>

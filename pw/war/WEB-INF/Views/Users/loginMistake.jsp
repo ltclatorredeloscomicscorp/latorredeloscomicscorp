@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <%@ page import="java.util.List"%>
 <%@ page import="controllers.users.IndexController"%>
-<%@ page import="models.User" %>
-	<%User log = (User)request.getAttribute("log"); 
-Boolean islog = (Boolean)request.getAttribute("isLogged");
-boolean isLogged = islog.booleanValue();%>
+<%@ page import="models.User"%>
+<%
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,9 +40,13 @@ boolean isLogged = islog.booleanValue();%>
 		<div id="name">
 			La torre de los comics
 			<div id="info_page">
-			<%if(log.isAdministrador()){ %>
+				<%
+					if (log.isAdministrador()) {
+				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
-				<%} %>
+				<%
+					}
+				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
 					title="Tutoriales de uso"><img src="../img/youtube.png"></a>
@@ -52,11 +58,19 @@ boolean isLogged = islog.booleanValue();%>
 		<div id="secondname">
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
-			<% if (isLogged){%>
-			<a class="men" href="/users/logout">Cerrar Sesion</a>
-			<%} else{%> 
-				<a href="/users/register" class="men">Registrar</a><a class="men" href="/users/login">Iniciar Sesion</a class="men"><%} %><label
-					class="men" id="opencar">Carro</label><label class="men" id="menu">Menú</label>
+				<%
+					if (isLogged) {
+				%>
+				<a class="men" href="/users/logout">Cerrar Sesion</a>
+				<%
+					} else {
+				%>
+				<a href="/users/register" class="men">Registrar</a><a class="men"
+					href="/users/login">Iniciar Sesion</a class="men">
+				<%
+					}
+				%><label class="men" id="opencar">Carro</label><label class="men"
+					id="menu">Menú</label>
 			</div>
 		</div>
 		</header>
@@ -71,9 +85,10 @@ boolean isLogged = islog.booleanValue();%>
 			<div id="mes">
 				<textarea id="message" placeholder="Ingrese mensaje"></textarea>
 				<button id="send">Send</button>
-		<script>
-		</script>
-			</div	>
+				<script>
+					
+				</script>
+			</div>
 		</div>
 		<div id="car">
 			<div id="en">

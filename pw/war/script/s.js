@@ -14,6 +14,19 @@ $(document).ready(function(){
 	});
 	$('#chaticon').click(function(){
 		$('#chat').show();
+		var id = $('#idUser').val();
+		$.post("/messages", {id:id}, function(response) {
+			$('#conversacion').innerHTML = '';
+			$('#conversacion').html(response);
+		});
+	});
+	$('#send').click(function(){
+		var message = $('#message').val();
+		$.post("/messages/add", {message:message}, function(response) {
+			//$('#message').val('');
+			$('#conversacion').innerHTML = '';
+			$('#conversacion').html(response);
+		});
 	});
 	$('#closeChat').click(function(){
 		$('#chat').hide();

@@ -15,18 +15,18 @@ import models.User;
 
 public class ViewController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	/*	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			req.setAttribute("url", req.getRequestURI());
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			Access access = pm.getObjectById(Access.class, Long.parseLong(req.getParameter("id")));
 			pm.close();
 			req.setAttribute("access", access);
 			RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Access/view.jsp");
 			rd.forward(req, resp);
-	//	}
+	}
 	}
 }

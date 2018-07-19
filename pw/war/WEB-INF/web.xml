@@ -276,6 +276,41 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>CorreoP</servlet-name>
 		<url-pattern>/correoP</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MessageAdd</servlet-name>
+		<servlet-class>controllers.messages.MessagesControllerAdd</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageAdd</servlet-name>
+		<url-pattern>/messages/add</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MessageIndex</servlet-name>
+		<servlet-class>controllers.messages.MessagesControllerIndex</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageIndex</servlet-name>
+		<url-pattern>/messages</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MessageView</servlet-name>
+		<servlet-class>controllers.messages.MessagesControllerView</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageView</servlet-name>
+		<url-pattern>/messages/view</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MessageDelete</servlet-name>
+		<servlet-class>controllers.messages.MessagesControllerDelete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageDelete</servlet-name>
+		<url-pattern>/messages/delete</url-pattern>
+	</servlet-mapping>
+	
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

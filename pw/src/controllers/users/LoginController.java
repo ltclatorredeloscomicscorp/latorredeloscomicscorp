@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
 			pm.close();
 			if (list.isEmpty()){
 				response.setContentType("text/html");
-			//	response.getWriter().println("No existe el usuario que desea ingresar " + "<a href=\"/users/register?url?=+"+request.getParameter("url")+"\">Registrar</a>");
+				response.getWriter().println("No existe el usuario que desea ingresar " + "<a href=\"/users/register?url?=+"+request.getParameter("url")+"\">Registrar</a>");
 				response.sendRedirect(us.createLogoutURL(request.getRequestURI()+"?email="+user.getEmail()+"&&p=t"));
 			} else{
 				response.sendRedirect("/");

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
-		<%@ page import="models.User" %>
-<%//User log = (User)request.getAttribute("log"); 
-//Boolean islog = (Boolean)request.getAttribute("isLogged");
-//boolean isLogged = islog.booleanValue();%>
+<%@ page import="models.User"%>
+<%
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +37,14 @@
 			<div id="name">
 				La torre de los comics
 				<div id="info_page">
-					<%//if(log.isAdministrador()){ %>
-				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
-				<%//} %>
+					<%
+						if (log.isAdministrador()) {
+					%>
+					<a href="/conf" title="Configuracion"><img
+						src="../img/conf.png"></a>
+					<%
+						}
+					%>
 					<a
 						href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
 						title="Tutoriales de uso"><img src="img/youtube.png"></a> <a
@@ -48,11 +55,19 @@
 			<div id="secondname">
 				<img src="img/logo1.png" id="log">
 				<div id="sdm">
-					<%// if (isLogged){%>
-			<a class="men" href="/users/logout">Cerrar Sesion</a>
-			<%//} else{%> 
-				<a href="/users/register" class="men">Registrar</a><a class="men" href="/users/login">Iniciar Sesion</a class="men"><%//} %><label
-					class="men" id="opencar">Carro</label><label class="men" id="menu">Menú</label>
+					<%
+						if (isLogged) {
+					%>
+					<a class="men" href="/users/logout">Cerrar Sesion</a>
+					<%
+						} else {
+					%>
+					<a href="/users/register" class="men">Registrar</a><a class="men"
+						href="/users/login">Iniciar Sesion</a class="men">
+					<%
+						}
+					%><label class="men" id="opencar">Carro</label><label class="men"
+						id="menu">Menú</label>
 				</div>
 			</div>
 		</header>
@@ -63,9 +78,7 @@
 			<div id="head">
 				<label>Hablemos</label><label id="closeChat">x</label>
 			</div>
-			<div id="conversacion">
-				
-			</div>
+			<div id="conversacion"></div>
 			<form id="mes">
 				<textarea placeholder="Ingrese mensaje"></textarea>
 				<input type="image" src="img/send.png">
@@ -75,17 +88,18 @@
 			<div id="en">
 				Carro de pedidos <span id="closecar">X</span>
 			</div>
-			<div id="ped">
-			</div>
+			<div id="ped"></div>
 		</div>
 		<div id="contenido">
 			<div id="img">
-			<img src="img/torre.jfif">
+				<img src="img/torre.jfif">
 			</div>
-			<div id="info_us" style="position:relative;margin-left: 55%;color: white;width: 40%;pading: 20px;	overflow: hidden;margin-top:-200px;margin-bottom: 150px;font-family: 'Oswald', sans-serif;">Tienda especializada en la venta de comics, articulos de colección y afines.
-categories</div>
+			<div id="info_us"
+				style="position: relative; margin-left: 55%; color: white; width: 40%; pading: 20px; overflow: hidden; margin-top: -200px; margin-bottom: 150px; font-family: 'Oswald', sans-serif;">Tienda
+				especializada en la venta de comics, articulos de colección y
+				afines. categories</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

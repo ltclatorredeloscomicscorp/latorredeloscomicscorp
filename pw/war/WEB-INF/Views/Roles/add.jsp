@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
-		<%@ page import="models.User" %>
-<%//User log = (User)request.getAttribute("log"); 
-//Boolean islog = (Boolean)request.getAttribute("isLogged");
-//boolean isLogged = islog.booleanValue();%>
+<%@ page import="models.User"%>
+<%
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,7 +19,8 @@
 <link rel="stylesheet" type="text/css" href="/css/plantilla.css">
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="/img/logo1.ico" />
-<script type="text/javascript" src="/script/s.js"></script><script type="text/javascript" src="/script/form.js"></script>
+<script type="text/javascript" src="/script/s.js"></script>
+<script type="text/javascript" src="/script/form.js"></script>
 </head>
 <body>
 	<div id="inicio">
@@ -35,12 +38,17 @@
 		<div id="name">
 			La torre de los comics
 			<div id="info_page">
-				<%//if(log.isAdministrador()){ %>
+				<%
+					if (log.isAdministrador()) {
+				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
-				<%//} %>
+				<%
+					}
+				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
-					title="Tutoriales de uso"><img src="../img/youtube.png"></a> <a
+					title="Tutoriales de uso"><img src="../img/youtube.png"></a>
+				<a
 					href="https://github.com/ltclatorredeloscomicscorp/latorredeloscomicscorp"
 					title="Open Source"><img src="../img/github.png"></a>
 			</div>
@@ -48,11 +56,19 @@
 		<div id="secondname">
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
-				<% //if (isLogged){%>
-			<a class="men" href="/users/logout">Cerrar Sesion</a>
-			<%//} else{%> 
-				<a href="/users/register" class="men">Registrar</a><a class="men" href="/users/login">Iniciar Sesion</a class="men"><%//} %><label
-					class="men" id="opencar">Carro</label><label class="men" id="menu">Menú</label>
+				<%
+					if (isLogged) {
+				%>
+				<a class="men" href="/users/logout">Cerrar Sesion</a>
+				<%
+					} else {
+				%>
+				<a href="/users/register" class="men">Registrar</a><a class="men"
+					href="/users/login">Iniciar Sesion</a class="men">
+				<%
+					}
+				%><label class="men" id="opencar">Carro</label><label class="men"
+					id="menu">Menú</label>
 			</div>
 		</div>
 		</header>

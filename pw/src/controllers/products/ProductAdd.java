@@ -18,14 +18,14 @@ import models.User;
 @SuppressWarnings("serial")
 public class ProductAdd extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-	/*	if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			boolean isLogged = LogController.isLogged();
 			req.setAttribute("isLogged", isLogged);
 			User log = LogController.getUser();
-			req.setAttribute("log", log);*/
+			req.setAttribute("log", log);
 			RequestDispatcher dispatcher =getServletContext().getRequestDispatcher("/WEB-INF/Views/Product/add.jsp");
 			dispatcher.forward(req, resp);
-		//}
+		}
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 

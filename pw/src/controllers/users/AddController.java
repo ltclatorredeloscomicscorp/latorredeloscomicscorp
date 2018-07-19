@@ -17,11 +17,11 @@ import models.User;
 
 public class AddController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
+		if (AccessController.isPermited(req.getServletPath(), req, resp, this)){
 			User log = LogController.getUser();
 			req.setAttribute("log", log);
 			boolean isLogged = LogController.isLogged();
-			req.setAttribute("isLogged", isLogged);*/
+			req.setAttribute("isLogged", isLogged);
 			LocalDateTime ldt = LocalDateTime.now(DateTimeZone.forID("America/Lima"));
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			String query = "select from " + Role.class.getName();
@@ -31,7 +31,7 @@ public class AddController extends HttpServlet {
 			pm.close();
 			RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/Users/add.jsp");
 			rd.forward(req, resp);
-		//}
+		}
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		PersistenceManager pm = PMF.get().getPersistenceManager();

@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <%@page import="models.Role"%>
 <%@page import="models.Access"%>
-<%@page import="java.util.List"%>	<%@ page import="models.User" %>
-<%//User log = (User)request.getAttribute("log"); 
-///Boolean islog = (Boolean)request.getAttribute("isLogged");
-//boolean isLogged = islog.booleanValue();%>
+<%@page import="java.util.List"%>
+<%@ page import="models.User"%>
+<%
+	User log = (User) request.getAttribute("log");
+	Boolean islog = (Boolean) request.getAttribute("isLogged");
+	boolean isLogged = islog.booleanValue();
+%>
 <%
 	Role role = (Role) request.getAttribute("role");
 %>
@@ -40,12 +43,17 @@
 		<div id="name">
 			La torre de los comics
 			<div id="info_page">
-				<%//if(log.isAdministrador()){ %>
+				<%
+					if (log.isAdministrador()) {
+				%>
 				<a href="/conf" title="Configuracion"><img src="../img/conf.png"></a>
-				<%//} %>
+				<%
+					}
+				%>
 				<a
 					href="https://www.youtube.com/playlist?list=PLSbWh2Bhn9eEvXkPKiDtsW1KGYfNbtRun"
-					title="Tutoriales de uso"><img src="../img/youtube.png"></a> <a
+					title="Tutoriales de uso"><img src="../img/youtube.png"></a>
+				<a
 					href="https://github.com/ltclatorredeloscomicscorp/latorredeloscomicscorp"
 					title="Open Source"><img src="../img/github.png"></a>
 			</div>
@@ -53,11 +61,19 @@
 		<div id="secondname">
 			<img src="../img/logo1.png" id="log">
 			<div id="sdm">
-				<%// if (isLogged){%>
-			<a class="men" href="/users/logout">Cerrar Sesion</a>
-			<%//} else{%> 
-				<a href="/users/register" class="men">Registrar</a><a class="men" href="/users/login">Iniciar Sesion</a class="men"><%//} %><label
-					class="men" id="opencar">Carro</label><label class="men" id="menu">Menú</label>
+				<%
+					if (isLogged) {
+				%>
+				<a class="men" href="/users/logout">Cerrar Sesion</a>
+				<%
+					} else {
+				%>
+				<a href="/users/register" class="men">Registrar</a><a class="men"
+					href="/users/login">Iniciar Sesion</a class="men">
+				<%
+					}
+				%><label class="men" id="opencar">Carro</label><label class="men"
+					id="menu">Menú</label>
 			</div>
 		</div>
 		</header>
@@ -83,28 +99,29 @@
 		</div>
 		<div id="contenido" style="background: white;">
 
-	
-		<h1 id="id" name="<%=role.getId()%>">Datos del Role:</h1>
-		<table id="view">
-			<tr>
-				<td>ID</td>
-				<td><%=role.getId()%></td>
-			</tr>
-			<tr>
-				<td>Nombre</td>
-				<td><%=role.getName()%></td>
-			</tr>
-			<tr>
-				<td>Creado</td>
-				<td><%=role.getCreated()%></td>
-			</tr>
-		</table>
-		<a href="/roles/delete?id=<%=role.getId() %>"><input type="submit" value="Eliminar"></a>
-		<p>
-			<b>Importante</b> Si se borra un rol todos sus accesos tambien seran
-			eliminados. <br>Tambien debera de asignar un nuevo rol a los
-			usuarios con dicho rol
-		</p>
-			</div>
+
+			<h1 id="id" name="<%=role.getId()%>">Datos del Role:</h1>
+			<table id="view">
+				<tr>
+					<td>ID</td>
+					<td><%=role.getId()%></td>
+				</tr>
+				<tr>
+					<td>Nombre</td>
+					<td><%=role.getName()%></td>
+				</tr>
+				<tr>
+					<td>Creado</td>
+					<td><%=role.getCreated()%></td>
+				</tr>
+			</table>
+			<a href="/roles/delete?id=<%=role.getId()%>"><input type="submit"
+				value="Eliminar"></a>
+			<p>
+				<b>Importante</b> Si se borra un rol todos sus accesos tambien seran
+				eliminados. <br>Tambien debera de asignar un nuevo rol a los
+				usuarios con dicho rol
+			</p>
+		</div>
 </body>
 </html>
